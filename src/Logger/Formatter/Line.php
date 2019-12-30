@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Phalcon\Logger\Formatter;
 
+use Exception;
 use Phalcon\Logger\Item;
 
 use function is_array;
@@ -77,6 +78,7 @@ class Line extends AbstractFormatter
      * @param Item $item
      *
      * @return string
+     * @throws Exception
      */
     public function format(Item $item): string
     {
