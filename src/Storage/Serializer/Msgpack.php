@@ -46,7 +46,7 @@ class Msgpack extends AbstractSerializer
     {
         $warning = false;
         set_error_handler(
-            function ($number, $message, $file, $line, $context) use (&$warning) {
+            function () use (&$warning) {
                 $warning = true;
             },
             E_WARNING

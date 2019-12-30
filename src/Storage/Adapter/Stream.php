@@ -135,8 +135,8 @@ class Stream extends AbstractAdapter
     /**
      * Reads data from the adapter
      *
-     * @param string $key
-     * @param null   $defaultValue
+     * @param string     $key
+     * @param mixed|null $defaultValue
      *
      * @return mixed
      */
@@ -336,7 +336,7 @@ class Stream extends AbstractAdapter
         }
 
         set_error_handler(
-            function ($number, $message, $file, $line, $context) use (&$warning) {
+            function () use (&$warning) {
                 $warning = true;
             },
             E_NOTICE

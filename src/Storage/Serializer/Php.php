@@ -42,7 +42,7 @@ class Php extends AbstractSerializer
     /**
      * Unserializes data
      *
-     * @param string $data
+     * @param mixed $data
      */
     public function unserialize($data): void
     {
@@ -57,7 +57,7 @@ class Php extends AbstractSerializer
 
             $warning = false;
             set_error_handler(
-                function ($number, $message, $file, $line, $context) use (&$warning) {
+                function () use (&$warning) {
                     $warning = true;
                 },
                 E_NOTICE
