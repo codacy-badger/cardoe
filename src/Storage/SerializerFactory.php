@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Phalcon\Storage;
 
 use Phalcon\Factory\AbstractFactory;
-use Phalcon\Factory\Exception;
+use Phalcon\Factory\Exception as FactoryException;
 use Phalcon\Storage\Serializer\SerializerInterface;
 
 /**
@@ -36,7 +36,7 @@ class SerializerFactory extends AbstractFactory
      * @param string $name
      *
      * @return SerializerInterface
-     * @throws Exception
+     * @throws FactoryException
      */
     public function newInstance(string $name): SerializerInterface
     {

@@ -98,8 +98,8 @@ class Libmemcached extends AbstractAdapter
     /**
      * Reads data from the adapter
      *
-     * @param string $key
-     * @param null   $defaultValue
+     * @param string     $key
+     * @param mixed|null $defaultValue
      *
      * @return mixed
      * @throws Exception
@@ -126,6 +126,7 @@ class Libmemcached extends AbstractAdapter
         if (null === $this->adapter) {
             $options      = $this->options;
             $persistentId = Arr::get($options, "persistentId", "ph-mcid-");
+            /** @var array $sasl */
             $sasl         = Arr::get($options, "saslAuthData", []);
             $connection   = new Memcached($persistentId);
             $serverList   = $connection->getServerList();
@@ -133,9 +134,13 @@ class Libmemcached extends AbstractAdapter
             $connection->setOption(Memcached::OPT_PREFIX_KEY, $this->prefix);
 
             if (count($serverList) < 1) {
+                /** @var array $servers */
                 $servers  = Arr::get($options, "servers", []);
+                /** @var array $client */
                 $client   = Arr::get($options, "client", []);
+                /** @var string $saslUser */
                 $saslUser = Arr::get($sasl, "user", "");
+                /** @var string $saslPass */
                 $saslPass = Arr::get($sasl, "pass", "");
                 $failover = [
                     Memcached::OPT_CONNECT_TIMEOUT       => 10,
